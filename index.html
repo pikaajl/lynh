@@ -171,10 +171,7 @@
 
 			</div>
 
-			<audio id="audio" autoplay loop controls style="width: 100%;">
-				<source src="https://static.wixstatic.com/mp3/72dedd_49edbb5812d84780ac12f759e30456b1.mp3" type="audio/mpeg">
-				Please update your browser does not support the audio element.
-			</audio>{codeBox}
+		
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
@@ -183,14 +180,17 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
-			<script type="text/javascript">
-				function autoplay(){
-    				var r =confirm("Would You Like To AutoPlay Music?");
-    				if (r == true) {
-       				 document.getElementById(“audio”).play();
-    				}
-  				}
+			<script>
+  				var audio = new Audio('https://static.wixstatic.com/mp3/72dedd_49edbb5812d84780ac12f759e30456b1.mp3');
+  				var UserInteracted = setInterval(()=>{
+    				audio.play()
+    				.then(()=>{
+      				clearInterval(UserInteracted);
+    				})
+    				.catch(()=>{
+      				console.log("waiting for user interaction to play first notification")
+    				});     
+  				},1000)
 			</script>
-			<script>autoplay();</script> {codeBox}
 	</body>
 </html>
